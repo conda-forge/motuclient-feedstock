@@ -1,5 +1,5 @@
 {% set name = "motuclient" %}
-{% set version = "1.8.6" %}
+{% set version = "1.8.7" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/motuclient-{{ version }}.tar.gz
-  sha256: c207a9c09c69c1ac4d2051e96c58e20f1026efec7054ea59f837dc870641bfd2
+  sha256: c3fb4583629e953887a04664b72eb401fd4e04e0bb9123a5b75c39f419d27320
 
 build:
   number: 0
