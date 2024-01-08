@@ -1,6 +1,5 @@
 {% set name = "motuclient" %}
-{% set version = "1.8.8" %}
-
+{% set version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,28 +7,32 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/motuclient-{{ version }}.tar.gz
-  sha256: c89f8dcb348ce8232b7fa5b37d531623fa8dca0263841a09c044e19777202c5d
+  sha256: 9ef1f34b9866caff760f9b3218b62bd11aaa7b5da5844308a968004752940d8f
 
 build:
-  number: 0
-  noarch: python
   entry_points:
-    - motuclient = motuclient:main
-  script: {{ PYTHON }} -m pip install . -vv
+    - motuclient = motuclient.motuclient:main
+    - motu-client = motuclient.motuclient:main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
   host:
+    - python >=3.7
     - pip
-    - python >=2.7
   run:
-    - python >=2.7
+    - python >=3.7
+    - python-dateutil
 
 test:
   imports:
     - motu_utils
+    - motuclient
   commands:
     - pip check
     - motuclient --help
+    - motu-client --help
   requires:
     - pip
 
@@ -42,3 +45,4 @@ about:
 extra:
   recipe-maintainers:
     - raybellwaves
+    - ocefpaf
