@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/motuclient-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/motuclient-{{ version }}.tar.gz
   sha256: 9ef1f34b9866caff760f9b3218b62bd11aaa7b5da5844308a968004752940d8f
 
 build:
@@ -15,14 +15,14 @@ build:
     - motu-client = motuclient.motuclient:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - python-dateutil
 
 test:
@@ -35,6 +35,7 @@ test:
     - motu-client --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/clstoulouse/motu-client-python
